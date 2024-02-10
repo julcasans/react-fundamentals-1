@@ -11,10 +11,35 @@
 
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
+
+    const message = ({children}) => <div className="message">{children}</div>
+
+    const messageHelloElement = React.createElement(message, {
+      children: 'Hella World',
+    })
+
+    const OtherMessage = ({text}) => <div className="message">{text}</div>
+
+    const PropTypes = {
+      string(props, propName, componentName) {
+        if (typeof props[propName] !== 'string') {
+          return new Error(
+            `Invalid prop ${propName} supplied to ${componentName}. Expected a string.`,
+          )
+        }
+      },
+    }
+
+    OtherMessage.propTypes = {
+      text: PropTypes.string,
+    }
+
     const element = (
       <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
+        {messageHelloElement}
+        <message children="so now what?" />
+        <OtherMessage text={1} />
+        {message({children: 'Goodbye World'})}
       </div>
     )
 

@@ -5,10 +5,9 @@
   <div id="root"></div>
 
   <!-- 🐨 add React and ReactDOM on the page.
-       💰 Here are script tags that'll do the job:
+       💰 Here are script tags that'll do the job:-->
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
-  -->
 
   <script type="module">
     const rootElement = document.getElementById('root')
@@ -16,14 +15,35 @@
     // You're going to re-implement this code using React!
     // 💣 So go ahead and delete this implementation (or comment it out for now)
     // These three lines are similar to React.createElement
-    const element = document.createElement('div')
-    element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
-    element.className = 'container' // 💰 in React, this is also called the "className" prop
-    // This is similar to ReactDOM.createRoot().render()
-    rootElement.append(element)
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
+    // element.className = 'container' // 💰 in React, this is also called the "className" prop
+    // // This is similar to ReactDOM.createRoot().render()
+    // rootElement.append(element)
 
     // 🐨 Please re-implement the regular document.createElement code above
     // with these React API calls
     // 💰 The example in the markdown file should be a good hint for you.
+
+    const reactElementHello = React.createElement('div', {
+      children: 'Hello',
+    })
+    const reactElementWorld = React.createElement('div', {
+      children: 'World',
+    })
+    const reactElementDiv = React.createElement('div', {
+      children: [reactElementHello, reactElementWorld],
+    })
+    // the first argument of React.createElement is the type of the element, in this case, 'div'
+    // the children prop can be a string, an array of strings, or an array of React elements
+    // the children prop be inside the object that is the second argument of React.createElement
+    // or it can be the third argument of React.createElement.
+    // The code below is equivalent to the code above
+    // const reactElementDiv = React.createElement('div', {},
+    //   reactElementHello, reactElementWorld
+    // )
+
+    const root = ReactDOM.createRoot(rootElement)
+    root.render(reactElementDiv)
   </script>
 </body>
